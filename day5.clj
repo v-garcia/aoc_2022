@@ -1,6 +1,5 @@
 (ns day5
-  (:require [clojure.string :as str]
-            [clojure.set :as set]))
+  (:require [clojure.string :as str]))
 
 (def input
   (->> (slurp "day5.input")
@@ -33,11 +32,7 @@
 (def answer2
   (->> (reduce (fn [stacks [n from to]]
                  (-> stacks
-                     (update to concat (reverse (take-last n (get stacks from))))
+                     (update to concat (take-last n (get stacks from)))
                      (update from #(drop-last n %))))
                input-stacks input-moves)
        (map last) (apply str)))
-
-
-
-
