@@ -43,7 +43,7 @@
                          top            (reverse (mapv #(nth % y) top-l))
                          bottom         (mapv #(nth % y) bottom-l)
                          partial-score  #(let  [[s1 s2]  (split-with (partial > tree) %)] (+ (count s1) (count (take 1 s2))))]
-                     (apply * (mapv partial-score [top right bottom   left]))))
+                     (apply * (mapv partial-score [top right bottom left]))))
                  current-line)))
 
 (def answer2
