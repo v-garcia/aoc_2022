@@ -7,6 +7,8 @@
        (str/split-lines)
        (map (fn [l] (let [[command n] (str/split l #" ")] [(keyword command) (and n (Integer/parseInt n))])))))
 
+;; Question 1
+
 (def cycle->v
   (->> input
        (reduce (fn [[v :as l] [command n]]
@@ -17,8 +19,6 @@
        reverse
        vec))
 
-;; Question 1
-
 (def answer1
   (->> [20 60 100 140 180 220]
        (mapv #(* % (nth cycle->v (dec %))))
@@ -27,7 +27,7 @@
 ;; Question 2
 
 (->> cycle->v
-     (map-indexed (fn [i v] (if 
-                             (<= (dec v) (mod i 40) (inc v)) \# \.)))
+     (map-indexed (fn [i v] (if (<= (dec v) (mod i 40) (inc v)) \# \.)))
      
-     (partition 40))
+     (partition 40)
+     (mapv println))
